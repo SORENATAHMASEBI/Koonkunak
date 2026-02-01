@@ -8,13 +8,16 @@ if (container) {
   const root = createRoot(container);
   root.render(<App />);
   
-  // حذف لودینگ بعد از رندر شدن اولین فریم ری‌اکت
-  setTimeout(() => {
-    const loader = document.getElementById('loading-screen');
-    if (loader) {
-      loader.style.opacity = '0';
-      loader.style.pointerEvents = 'none';
-      setTimeout(() => loader.remove(), 700);
-    }
-  }, 1500);
+  // شبیه‌سازی لودینگ سنگین برای القای ابهت برنامه
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const loader = document.getElementById('loading-screen');
+      if (loader) {
+        loader.style.opacity = '0';
+        loader.style.transform = 'scale(1.2)';
+        loader.style.pointerEvents = 'none';
+        setTimeout(() => loader.remove(), 1000);
+      }
+    }, 3000); // 3 ثانیه مکث برای لودینگ
+  });
 }
